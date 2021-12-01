@@ -1,0 +1,26 @@
+---
+title: "Practical Machine Learning Project"
+output: html_document
+---
+
+```{r setup, include=FALSE, cache=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+source('C:/Users/AMThe/OneDrive/Documents/MLProject/practicalmachinelearning.R')
+```
+
+## Process
+
+Starting out with the data, I want to look at what im working with before doing anything. After looking at the structure, I notice a lot of empty columns. I then proceed to create a DF with only filled, integer and numeric columns. This then leaves me with 86 columns. Still plenty of data to help prevent overfitting. Then I split the data into a 75/25 testing/training split. After doing so I look at a prop.table of the testing set and training set. My reason for doing this is to make sure there isnt a disproportionate about of one class in a set over the other. The ratio in both the testing and training set are roughly 28.4%/19.3%/17.4%/13.4%/18.4% (A/B/C/D/E). 
+
+```{r, echo=FALSE, message=FALSE}
+tabtrain
+tabtest
+```
+
+
+Again, with an even split helping prevent over fitting. At this point I'm comfortable that over fitting will not be an issue and CV wont be needed, however, I test both. I build a simple model with randomForest testing Class against every other variable in the testing set I made with the testing and training set being only integer and numeric full columns. After the RF model was created, I then used it to make predictions on the test set that I made. The confusion matrix showed over 99% accuracy. After testing a model with cross validation, the only different was about 1 less false classification. Once I noticed the performance from the model and predictions stayed the same, I then brought in the 20 testing data points that the project provided. I then kept only the columns that were in my training data, resulting in just the full integer and numeric columns, then used my model on that data set. Included bellow will be the confusion matrix for the predictions on my testing set.
+
+```{r, echo=FALSE, message=FALSE}
+conmat
+```
+
